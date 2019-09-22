@@ -1,9 +1,7 @@
 # install heroku toolbelt
 # inspired by https://toolbelt.heroku.com/install.sh
 curl -s https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz | tar xz
-mv heroku-client/* .
-rmdir heroku-client
-PATH="bin:$PATH"
+PATH="/app/heroku-client/bin:$PATH"
 
 #!/bin/sh
 
