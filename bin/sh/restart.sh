@@ -1,3 +1,10 @@
+# install heroku toolbelt
+# inspired by https://toolbelt.heroku.com/install.sh
+curl -s https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz | tar xz
+mv heroku-client/* .
+rmdir heroku-client
+PATH="bin:$PATH"
+
 #!/bin/sh
 
 # Set up the Heroku scheduler to run this command every hour. See example setup at https://goo.gl/nMCSH3
