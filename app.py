@@ -1,19 +1,50 @@
-from flask import Flask
-from datetime import datetime
-app = Flask(__name__)
+# Python program to illustrate the concept 
+# of threading 
+# importing the threading module 
+import threading 
+import datetime as dt
+from time import sleep
+
+t = dt.datetime.now()
+minute_count = 0 
 
 
-@app.route('/')
-def homepage():
-    the_time = datetime.now().strftime("%A, %d %b %Y %l:%M %p")
+def print_cube(num): 
+	""" 
+	function to print cube of given num 
+	"""
+	while True:
+    delta_minutes = (dt.datetime.now() -t).seconds / 60                
+    if delta_minutes and delta_minutes != minute_count:
+        print("1 Min has passed since the last print")
+        minute_count = delta_minutes
+    sleep(1) # Stop maxing out CPU
 
-    return """
-    <h1>Hello heroku</h1>
-    <p>It is currently {time}.</p>
+def print_square(num): 
+	""" 
+	function to print square of given num 
+	"""
+	while True:
+    delta_minutes = (dt.datetime.now() -t).seconds / 120                
+    if delta_minutes and delta_minutes != minute_count:
+        print("2 Min has passed since the last print")
+        minute_count = delta_minutes
+    sleep(1) # Stop maxing out CPU
 
-    <img src="http://loremflickr.com/600/400" />
-    """.format(time=the_time)
+if __name__ == "__main__": 
+	# creating thread 
+	t1 = threading.Thread(target=print_square, args=(10,)) 
+	t2 = threading.Thread(target=print_cube, args=(10,)) 
 
-if __name__ == '__main__':
-    app.run(debug=True, use_reloader=True)
+	# starting thread 1 
+	t1.start() 
+	# starting thread 2 
+	t2.start() 
 
+	# wait until thread 1 is completely executed 
+	t1.join() 
+	# wait until thread 2 is completely executed 
+	t2.join() 
+
+	# both threads completely executed 
+	print("Done!") 
