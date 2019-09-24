@@ -2,34 +2,18 @@
 # of threading 
 # importing the threading module 
 import threading 
-import datetime as dt
-from time import sleep
-
-t = dt.datetime.now()
-minute_count = 0 
-
+import time
 
 def print_cube(num): 
-	""" 
-	function to print cube of given num 
-	"""
-	while True:
-    delta_minutes = (dt.datetime.now() -t).seconds / 60                
-    if delta_minutes and delta_minutes != minute_count:
-        print("1 Min has passed since the last print")
-        minute_count = delta_minutes
-    sleep(1) # Stop maxing out CPU
+    while(True):
+        print("from 1st Thread ",time.ctime())
+        time.sleep(60)
 
-def print_square(num): 
-	""" 
-	function to print square of given num 
-	"""
-	while True:
-    delta_minutes = (dt.datetime.now() -t).seconds / 120                
-    if delta_minutes and delta_minutes != minute_count:
-        print("2 Min has passed since the last print")
-        minute_count = delta_minutes
-    sleep(1) # Stop maxing out CPU
+
+def print_square(num):
+    while(True):
+        print("From 2nd thread",time.ctime())
+        time.sleep(120)
 
 if __name__ == "__main__": 
 	# creating thread 
