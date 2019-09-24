@@ -3,7 +3,6 @@
 # importing the threading module 
 import threading 
 import time
-
 def print_cube(num): 
     while(True):
         print("from 1st Thread ",time.ctime())
